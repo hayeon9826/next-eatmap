@@ -1,8 +1,9 @@
+import Layout from '@/components/Layout';
 import Link from 'next/link';
 
 export default function Home() {
   return (
-    <>
+    <Layout>
       <div>Hello World</div>
       <ul>
         <li>
@@ -24,6 +25,6 @@ export default function Home() {
           <Link href="/shops/1">shop detail</Link>
         </li>
       </ul>
-    </>
+    </Layout>
   );
 }
