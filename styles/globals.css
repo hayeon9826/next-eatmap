@@ -3,113 +3,67 @@
 @tailwind utilities;
 
 /* navbar  */
-
+/* https://transform.tools/css-to-tailwind */
 .navbar {
-  height: 52px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  background-color: white;
-  border-bottom: 1px solid lightgray;
-  padding: 0px 24px;
+  @apply h-[52px] w-full fixed bg-white px-6 py-0 border-b-gray-200 border-b border-solid top-0;
 }
 
 .navbar__header {
-  display: inline;
+  @apply inline;
 }
 
 .navbar__title {
-  display: inline-block;
-  font-size: 24px;
-  font-weight: 500;
-  color: #002d62;
-  padding: 8px;
+  @apply inline-block text-2xl font-medium text-blue-800 p-2 italic;
 }
 
 .navbar__links {
-  display: inline;
-  float: right;
-  font-size: 16px;
+  @apply inline float-right text-base;
 }
 
 .navbar__links a {
-  display: inline-block;
-  color: black;
-  padding: 14px 8px;
-}
-
-.navbar__links a:hover {
-  color: darkgray;
+  @apply inline-block text-[black] px-2 py-3.5 hover:text-[darkgray];
 }
 
 .navbar__button,
 #navbar__input--check {
-  display: none;
+  @apply hidden;
 }
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    padding: 0px 12px;
+    @apply px-3 py-0;
   }
+
   .navbar__button {
-    display: inline-block;
-    position: absolute;
-    right: 0px;
-    top: 0px;
+    @apply inline-block absolute right-0 top-0;
   }
 
   .navbar__button label {
-    display: inline-block;
-    width: 52px;
-    height: 52px;
-    padding: 16px;
+    @apply inline-block w-[52px] h-[52px] p-4;
   }
 
   .navbar__button > label:hover,
   .navbar #navbar__input--check:checked ~ .navbar__button > label {
-    background-color: rgba(0, 0, 0, 0.1);
+    @apply bg-[rgba(0,0,0,0.1)];
   }
 
   .navbar__button label span {
-    display: block;
-    width: 20px;
-    height: 6px;
-    border-top: 1px solid black;
+    @apply block w-5 h-1.5 border-t-[black] border-t border-solid;
   }
 
   .navbar__links {
-    position: absolute;
-    display: block;
-    width: 100%;
-    background-color: #002d62;
-    height: 0px;
-    transition: all 0.3s ease-in;
-    overflow-y: hidden;
-    top: 50px;
-    left: 0px;
+    @apply absolute block w-full bg-blue-800 h-0 transition-all duration-[0.3s] ease-[ease-in] overflow-y-hidden left-0 top-[50px] z-10;
   }
 
   .navbar__links a {
-    display: block;
-    width: 100%;
-    color: white;
-    padding: 14px 20px;
-  }
-
-  .navbar__links a:first-of-type {
-    margin-top: 12px;
+    @apply block w-full text-[white] px-5 py-3.5 first-of-type:mt-3;
   }
 
   .navbar > #navbar__input--check:not(:checked) ~ .navbar__links {
-    height: 0px;
+    @apply h-0;
   }
-  .navbar > #navbar__input--check:checked ~ .navbar__links {
-    height: calc(100vh - 50px);
-    overflow-y: auto;
-  }
-}
 
-/* layout */
-.layout__div {
-  padding-top: 52px;
+  .navbar > #navbar__input--check:checked ~ .navbar__links {
+    @apply h-[calc(100vh_-_50px)] overflow-y-auto;
+  }
 }
