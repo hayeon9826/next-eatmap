@@ -1,3 +1,9 @@
+import Layout from '@/components/Layout';
+
 export default function SigninPage() {
-  return <div>Sign in</div>;
+  return (
+    <Layout>
+      <div>Sign in</div>
+    </Layout>
+  );
 }

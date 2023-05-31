@@ -1,10 +1,11 @@
 import Link from 'next/link';
+import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 
 export default function MyPage() {
   const router = useRouter();
   return (
-    <>
+    <Layout>
       <div>Mypage</div>
       <ul>
         <li>
@@ -16,6 +17,6 @@ export default function MyPage() {
           </button>
         </li>
       </ul>
-    </>
+    </Layout>
   );
 }

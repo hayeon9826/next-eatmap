@@ -5,7 +5,9 @@ export default function Header() {
     <div className="navbar">
       <input type="checkbox" id="navbar__input--check" />
       <div className="navbar__header">
-        <div className="navbar__title">eatmap</div>
+        <div className="navbar__title">
+          <Link href="/">eatmap</Link>
+        </div>
       </div>
       <div className="navbar__button">
         <label htmlFor="navbar__input--check">

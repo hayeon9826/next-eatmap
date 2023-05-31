@@ -1,3 +1,9 @@
+import Layout from '@/components/Layout';
+
 export default function ShopIndex() {
-  return <div>Shop index</div>;
+  return (
+    <Layout>
+      <div>Shop index</div>
+    </Layout>
+  );
 }
