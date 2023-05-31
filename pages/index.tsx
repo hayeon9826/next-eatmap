@@ -19,6 +19,9 @@ export default function Home() {
           <Link href="/shops">shops</Link>
         </li>
         <li>
+          <Link href="/shops">shops new</Link>
+        </li>
+        <li>
           <Link href="/shops/1/edit">shop edit</Link>
         </li>
         <li>
