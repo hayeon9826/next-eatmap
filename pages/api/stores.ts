@@ -1,11 +1,13 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { StoreType } from '@/interface';
+const { PrismaClient } = require('@prisma/client');
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<StoreType[]>
 ) {
-  const stores = (await import('../../data/store.json'))['DATA'] as StoreType[];
+  const prisma = new PrismaClient();
+  const stores = await prisma.store.findMany({});
 
   res.status(200).json(stores);
 }

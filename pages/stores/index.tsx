@@ -16,8 +16,8 @@ export default function ShopIndex({ stores }: ShopIndexProps) {
               <div className="flex gap-x-4">
                 <Image
                   src={
-                    store?.bizcnd_code_nm
-                      ? `/images/markers/${store?.bizcnd_code_nm}.png`
+                    store?.category
+                      ? `/images/markers/${store?.category}.png`
                       : '/images/markers/default.png'
                   }
                   width={48}
@@ -26,20 +26,19 @@ export default function ShopIndex({ stores }: ShopIndexProps) {
                 />
                 <div className="min-w-0 flex-auto">
                   <p className="text-sm font-semibold leading-6 text-gray-900">
-                    {store?.upso_nm}
+                    {store?.name}
                   </p>
                   <p className="mt-1 truncate text-xs leading-5 text-gray-500">
-                    {store?.cob_code_nm}
+                    {store?.storeType}
                   </p>
                 </div>
               </div>
               <div className="hidden sm:flex sm:flex-col sm:items-end">
                 <p className="text-sm leading-6 text-gray-900">
-                  {store?.rdn_code_nm}
+                  {store?.address}
                 </p>
                 <p className="mt-1 text-xs leading-5 text-gray-500">
-                  {store?.tel_no} | {store?.crtfc_gbn_nm} |
-                  {store?.bizcnd_code_nm}
+                  {store?.phone} | {store?.foodCertifyName} |{store?.category}
                 </p>
               </div>
             </li>
