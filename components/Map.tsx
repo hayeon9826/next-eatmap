@@ -11,7 +11,7 @@ declare global {
 
 interface MapProps {
   setMap: Dispatch<SetStateAction<any>>;
-  setCurrentStore: Dispatch<SetStateAction<StoreType>>;
+  setCurrentStore: Dispatch<SetStateAction<StoreType | null>>;
 }
 
 const DEFAULT_LAT = 37.497625203;

@@ -11,8 +11,8 @@ import cn from 'classnames';
 import { StoreType } from '@/interface';
 
 interface StoreBoxProps {
-  store: StoreType;
-  setCurrentStore: Dispatch<SetStateAction<StoreType>>;
+  store: StoreType | null;
+  setCurrentStore: Dispatch<SetStateAction<StoreType | null>>;
 }
 
 export default function StoreBox({ store, setCurrentStore }: StoreBoxProps) {

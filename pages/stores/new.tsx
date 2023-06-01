@@ -3,7 +3,7 @@ import Layout from '@/components/Layout';
 import { FaUserCircle } from 'react-icons/fa';
 import { MdPhotoSizeSelectActual } from 'react-icons/md';
 
-export default function ShopNew() {
+export default function StoreNew() {
   return (
     <Layout>
       <div className="px-4 md:max-w-5xl mx-auto py-8">

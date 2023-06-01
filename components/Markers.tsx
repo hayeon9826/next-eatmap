@@ -3,19 +3,15 @@ import { Dispatch, SetStateAction, useEffect } from 'react';
 
 interface MarkerProps {
   map: any;
-  setCurrentStore: Dispatch<SetStateAction<StoreType>>;
-  storeDatas: StoreType[];
+  setCurrentStore: Dispatch<SetStateAction<StoreType | null>>;
+  stores: StoreType[];
 }
 
-export default function Markers({
-  map,
-  setCurrentStore,
-  storeDatas,
-}: MarkerProps) {
+export default function Markers({ map, setCurrentStore, stores }: MarkerProps) {
   useEffect(() => {
     if (map) {
       // 식당 데이터
-      storeDatas?.map((store: StoreType) => {
+      stores?.map((store: StoreType) => {
         let imageSrc = store?.bizcnd_code_nm
             ? `/images/markers/${store?.bizcnd_code_nm}.png`
             : '/images/markers/default.png', // 마커이미지의 주소입니다
