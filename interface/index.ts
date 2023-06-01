@@ -1,4 +1,5 @@
 export interface StoreType {
+  id: number;
   phone?: string;
   lat: number;
   lng: number;
