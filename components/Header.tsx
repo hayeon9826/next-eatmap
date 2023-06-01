@@ -17,8 +17,8 @@ export default function Header() {
         </label>
       </div>
       <div className="navbar__links">
-        <Link href="/shops">맛집 목록</Link>
-        <Link href="/shops/new">맛집 등록</Link>
+        <Link href="/stores">맛집 목록</Link>
+        <Link href="/stores/new">맛집 등록</Link>
         <Link href="/users/mypage">마이페이지</Link>
         <Link href="/users/login">로그인</Link>
         <Link href="/users/signin">회원가입</Link>
