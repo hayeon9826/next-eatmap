@@ -8,4 +8,13 @@ export interface StoreType {
   storeType?: string;
   foodCertifyName: string;
   category?: string;
+  page?: string;
+  totalPage?: string;
+}
+
+export interface StoreApiResponse {
+  data: StoreType[];
+  totalPage?: number;
+  totalCount?: string;
+  page?: number;
 }
