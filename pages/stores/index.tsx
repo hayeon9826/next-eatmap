@@ -1,20 +1,25 @@
 import Layout from '@/components/Layout';
 import Image from 'next/image';
-import { StoreType } from '@/interface';
+import { StoreApiResponse, StoreType } from '@/interface';
 import axios from 'axios';
 import Link from 'next/link';
 import { useQuery } from 'react-query';
+import { useRouter } from 'next/router';
 import SkeletonList from '@/components/SkeletonList';
+import Pagination from '@/components/Pagination';
 
 export default function ShopIndex() {
+  const router = useRouter();
+  const { page = '0' }: any = router.query;
+
   const config = {
-    url: '/api/stores',
+    url: `/api/stores?page=${page}`,
   };
   const { data: stores, isFetching } = useQuery({
-    queryKey: ['stores'],
+    queryKey: [`stores-${page}`],
     queryFn: async () => {
       const { data } = await axios(config);
-      return data as StoreType[];
+      return data as StoreApiResponse;
     },
   });
 
@@ -25,7 +30,7 @@ export default function ShopIndex() {
           {isFetching ? (
             <SkeletonList />
           ) : (
-            stores?.map((store, index) => (
+            stores?.data?.map((store: StoreType, index) => (
               <li className="flex justify-between gap-x-6 py-5" key={index}>
                 <div className="flex gap-x-4">
                   <Image
@@ -61,6 +66,9 @@ export default function ShopIndex() {
             ))
           )}
         </ul>
+        {stores?.totalPage && stores?.totalPage > 0 && (
+          <Pagination totalPage={stores?.totalPage} page={page} />
+        )}
       </div>
     </Layout>
   );
