@@ -16,7 +16,7 @@ export default function LoginPage() {
 
   return (
     <Layout>
-      <div className="flex h-[calc(100vh-52px)] flex-col justify-center px-6 lg:px-8">
+      <div className="flex h-[80vh] flex-col justify-center px-6 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="text-blue-800 text-center text-2xl font-semibold italic">
             eatmap

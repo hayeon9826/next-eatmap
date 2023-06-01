@@ -31,7 +31,7 @@
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    @apply px-3 py-0;
+    @apply px-3 py-0 z-[100];
   }
 
   .navbar__button {
@@ -52,11 +52,15 @@
   }
 
   .navbar__links {
-    @apply absolute block w-full bg-blue-800 h-0 transition-all duration-[0.3s] ease-[ease-in] overflow-y-hidden left-0 top-[50px] z-10;
+    @apply absolute block w-full bg-blue-800 h-0 transition-all duration-[0.3s] ease-[ease-in] overflow-y-hidden left-0 top-[50px] z-[100];
   }
 
   .navbar__links a {
     @apply block w-full text-[white] px-5 py-3.5 first-of-type:mt-3;
+  }
+
+  .navbar__links button {
+    @apply text-[white] text-left px-5 py-2;
   }
 
   .navbar > #navbar__input--check:not(:checked) ~ .navbar__links {
