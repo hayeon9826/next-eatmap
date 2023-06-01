@@ -1,6 +1,7 @@
 /*global kakao*/
+import { Dispatch, SetStateAction } from 'react';
+import { StoreType } from '@/interface';
 import Script from 'next/script';
-import * as stores from '@/data/data.json';
 
 declare global {
   interface Window {
@@ -8,10 +9,15 @@ declare global {
   }
 }
 
+interface MapProps {
+  setMap: Dispatch<SetStateAction<any>>;
+  setCurrentStore: Dispatch<SetStateAction<StoreType>>;
+}
+
 const DEFAULT_LAT = 37.497625203;
 const DEFAULT_LNG = 127.03088379;
 
-export default function Map() {
+export default function Map({ setMap, setCurrentStore }: MapProps) {
   const loadKakaoMap = () => {
     window.kakao.maps.load(() => {
       const mapContainer = document.getElementById('map');
@@ -21,36 +27,12 @@ export default function Map() {
       };
       const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-      // 식당 데이트
-      stores?.['DATA']?.map((store) => {
-        let imageSrc = store?.bizcnd_code_nm
-            ? `/images/markers/${store?.bizcnd_code_nm}.png`
-            : '/images/markers/default.png', // 마커이미지의 주소입니다
-          imageSize = new window.kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
-          imageOption = { offset: new window.kakao.maps.Point(27, 69) }; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-
-        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-        let markerImage = new window.kakao.maps.MarkerImage(
-          imageSrc,
-          imageSize,
-          imageOption
-        );
-
-        // 마커가 표시될 위치입니다
-        let markerPosition = new window.kakao.maps.LatLng(
-          store?.y_dnts,
-          store?.x_cnts
-        );
-
-        // 마커를 생성합니다
-        let marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-          image: markerImage, // 마커이미지 설정
-        });
-
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
+      // 지도에 클릭 이벤트를 등록합니다
+      window.kakao.maps.event.addListener(map, 'click', () => {
+        setCurrentStore(null);
       });
+
+      setMap(map);
     });
   };
 
