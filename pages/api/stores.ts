@@ -1,13 +1,19 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { StoreType } from '@/interface';
-const { PrismaClient } = require('@prisma/client');
+import prisma from '@/lib/prisma';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<StoreType[]>
 ) {
-  const prisma = new PrismaClient();
-  const stores = await prisma.store.findMany({});
+  const { id }: any = req.query;
+  const stores = await prisma.store.findMany({
+    orderBy: { id: 'asc' },
+    where: {
+      id: id ? parseInt(id) : {},
+    },
+  });
+  console.log(stores);
 
-  res.status(200).json(stores);
+  res.status(200).json(id ? stores[0] : stores);
 }

@@ -9,6 +9,7 @@ import {
 } from 'react-icons/ai';
 import cn from 'classnames';
 import { StoreType } from '@/interface';
+import { useRouter } from 'next/router';
 
 interface StoreBoxProps {
   store: StoreType | null;
@@ -16,6 +17,7 @@ interface StoreBoxProps {
 }
 
 export default function StoreBox({ store, setCurrentStore }: StoreBoxProps) {
+  const router = useRouter();
   return (
     <div
       className={cn(
@@ -67,7 +69,7 @@ export default function StoreBox({ store, setCurrentStore }: StoreBoxProps) {
           </div>
           <button
             type="button"
-            onClick={() => window.alert('상세보기 링크 이동')}
+            onClick={() => router.push(`/stores/${store.id}`)}
             className="w-full bg-blue-700 hover:bg-blue-500 focus:bg-blue-500 py-3 text-white font-semibold rounded-b-lg"
           >
             상세보기
