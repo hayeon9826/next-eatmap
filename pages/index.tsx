@@ -1,5 +1,5 @@
 /*global kakao*/
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Layout from '@/components/Layout';
 import Map from '@/components/Map';
 import Markers from '@/components/Markers';
