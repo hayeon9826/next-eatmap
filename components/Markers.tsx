@@ -1,13 +1,17 @@
+import { currentStoreState, locationState, mapState } from '@/atom';
 import { StoreType } from '@/interface';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface MarkerProps {
-  map: any;
-  setCurrentStore: Dispatch<SetStateAction<StoreType | null>>;
   stores: StoreType[];
 }
 
-export default function Markers({ map, setCurrentStore, stores }: MarkerProps) {
+export default function Markers({ stores }: MarkerProps) {
+  const map = useRecoilValue(mapState);
+  const setCurrentStore = useSetRecoilState(currentStoreState);
+  const [location, setLocation] = useRecoilState(locationState);
+
   useEffect(() => {
     if (map) {
       // 식당 데이터
@@ -63,8 +67,20 @@ export default function Markers({ map, setCurrentStore, stores }: MarkerProps) {
           customOverlay.setMap(null);
         });
 
+        window.kakao.maps.event.addListener(map, 'zoom_changed', function () {
+          setLocation({
+            ...location,
+            zoom: map.getLevel(),
+          });
+        });
+
         window.kakao.maps.event.addListener(marker, 'click', function () {
           setCurrentStore(store);
+          setLocation({
+            ...location,
+            lat: store.lat,
+            lng: store.lng,
+          });
 
           let newMarker = new window.kakao.maps.Marker({
             position: markerPosition,

@@ -1,5 +1,4 @@
 /*global kakao*/
-import { useState } from 'react';
 import Layout from '@/components/Layout';
 import Map from '@/components/Map';
 import Markers from '@/components/Markers';
@@ -12,14 +11,11 @@ interface HomeProps {
 }
 
 export default function Home({ stores }: HomeProps) {
-  const [map, setMap] = useState(null);
-  const [currentStore, setCurrentStore] = useState<StoreType | null>(null);
-
   return (
     <Layout>
-      <Map setMap={setMap} setCurrentStore={setCurrentStore} />
-      <Markers map={map} setCurrentStore={setCurrentStore} stores={stores} />
-      <StoreBox store={currentStore} setCurrentStore={setCurrentStore} />
+      <Map />
+      <Markers stores={stores} />
+      <StoreBox />
     </Layout>
   );
 }
