@@ -6,9 +6,13 @@ import axios from 'axios';
 import { StoreInterface } from '@/interface';
 import Map from '@/components/Map';
 import Marker from '@/components/Marker';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { toast } from 'react-toastify';
 
 export default function StorePage() {
   const router = useRouter();
+  const { status } = useSession();
   const { id } = router.query;
 
   const config = {
@@ -27,28 +31,62 @@ export default function StorePage() {
     }
   );
 
+  const handleDelete = async () => {
+    const confirm = window.confirm('해당 게시글을 삭제하시겠습니까?');
+    if (confirm && store) {
+      try {
+        const res = await axios.delete(`/api/stores?id=${store.id}`);
+
+        if (res.status === 200) {
+          toast.success('게시글을 삭제했습니다.');
+          router.replace('/');
+        } else {
+          toast.error('다시 시도해주세요');
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+
   return (
     <Layout>
       <div className="px-4 md:max-w-5xl mx-auto py-8">
-        <div className="flex gap-4">
-          <Image
-            src={
-              store?.category
-                ? `/images/markers/${store?.category}.png`
-                : '/images/markers/default.png'
-            }
-            width={56}
-            height={56}
-            alt="아이콘 이미지"
-          />
-          <div className="px-4 sm:px-0">
-            <h3 className="text-base font-semibold leading-7 text-gray-900">
-              {store?.name}
-            </h3>
-            <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-              {store?.address}
-            </p>
+        <div className="md:flex justify-between items-center py-4 md:py-0">
+          <div className="flex gap-4">
+            <Image
+              src={
+                store?.category
+                  ? `/images/markers/${store?.category}.png`
+                  : '/images/markers/default.png'
+              }
+              width={56}
+              height={56}
+              alt="아이콘 이미지"
+            />
+            <div className="px-4 sm:px-0">
+              <h3 className="text-base font-semibold leading-7 text-gray-900">
+                {store?.name}
+              </h3>
+              <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
+                {store?.address}
+              </p>
+            </div>
           </div>
+          {status === 'authenticated' && (
+            <div className="px-4 sm:px-0 text-sm leading-6 text-gray-500 flex gap-2 items-center float-right mt-2 md:mt-0">
+              <Link className="underline" href={`/stores/${store?.id}/edit`}>
+                수정
+              </Link>
+              <button
+                type="button"
+                className="underline"
+                onClick={handleDelete}
+              >
+                삭제
+              </button>
+            </div>
+          )}
         </div>
 
         <div className="mt-6 border-t border-gray-100">
@@ -83,6 +121,14 @@ export default function StorePage() {
               </dt>
               <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                 {store?.phone}
+              </dd>
+            </div>
+            <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+              <dt className="text-sm font-medium leading-6 text-gray-900">
+                카테고리
+              </dt>
+              <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                {store?.category}
               </dd>
             </div>
             <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
