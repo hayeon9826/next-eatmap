@@ -10,6 +10,8 @@ export interface StoreType {
   category?: string;
   page?: string;
   totalPage?: string;
+  district?: string;
+  rating?: number;
 }
 
 export interface StoreApiResponse {

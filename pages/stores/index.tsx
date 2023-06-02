@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import Layout from '@/components/Layout';
 import Image from 'next/image';
@@ -9,11 +9,19 @@ import { useInfiniteQuery } from 'react-query';
 
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import Loader from '@/components/Loader';
+import SearchFilter from '@/components/SearchFilter';
 
 export default function ShopIndex() {
   const listRef = useRef<HTMLDivElement | null>(null);
   const listEnd = useIntersectionObserver(listRef, {});
+  const [q, setQ] = useState<string | null>(null);
+  const [district, setDistrict] = useState<string | null>(null);
   const isEndPage = !!listEnd?.isIntersecting;
+
+  const params = {
+    q: q,
+    district: district,
+  };
 
   const {
     data: stores,
@@ -22,12 +30,13 @@ export default function ShopIndex() {
     isFetchingNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    ['stores'],
+    ['stores', params],
     async ({ pageParam = 0 }) => {
       const { data } = await axios('/api/stores', {
         params: {
           limit: 10,
           page: pageParam,
+          ...params,
         },
       });
 
@@ -62,6 +71,7 @@ export default function ShopIndex() {
   return (
     <Layout>
       <div className="px-4 md:max-w-5xl mx-auto py-8">
+        <SearchFilter setQ={setQ} setDistrict={setDistrict} />
         <ul role="list" className="divide-y divide-gray-100">
           {stores?.pages?.map((page, i) => (
             <React.Fragment key={i}>

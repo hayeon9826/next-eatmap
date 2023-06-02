@@ -6,7 +6,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<StoreApiResponse>
 ) {
-  const { id, page, limit = '10' }: any = req.query;
+  const { id, page, limit = '10', q, district }: any = req.query;
   let stores;
 
   const count = await prisma.store.count({});
@@ -16,6 +16,8 @@ export default async function handler(
       orderBy: { id: 'asc' },
       where: {
         id: id ? parseInt(id) : {},
+        district: district ? district : {},
+        ...(q ? { name: { contains: q } } : {}),
       },
       skip: page === undefined ? 0 : parseInt(page) * parseInt(limit),
       take: limit === undefined ? {} : parseInt(limit),
@@ -32,6 +34,8 @@ export default async function handler(
       orderBy: { id: 'asc' },
       where: {
         id: id ? parseInt(id) : {},
+        district: district ? district : {},
+        ...(q ? { name: { contains: q } } : {}),
       },
     });
   }
