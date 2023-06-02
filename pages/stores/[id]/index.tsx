@@ -1,11 +1,17 @@
+import { useEffect, useState } from 'react';
+
 import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { StoreType } from '@/interface';
+import Map from '@/components/Map';
+import Marker from '@/components/Marker';
 
 export default function StorePage() {
+  const [map, setMap] = useState(null);
+
   const router = useRouter();
   const { id } = router.query;
 
@@ -13,7 +19,7 @@ export default function StorePage() {
     url: `/api/stores?id=${id}`,
   };
 
-  const { data: store, isFetching } = useQuery(
+  const { data: store, isSuccess } = useQuery(
     [config],
     async () => {
       const { data } = await axios(config);
@@ -102,6 +108,12 @@ export default function StorePage() {
           </dl>
         </div>
       </div>
+      {isSuccess && (
+        <div className="overflow-hidden w-full mb-20 max-w-5xl mx-auto">
+          <Map setMap={setMap} lat={store?.lat} lng={store?.lng} zoom={1} />
+          <Marker map={map} store={store} />
+        </div>
+      )}
     </Layout>
   );
 }
