@@ -5,6 +5,8 @@ import {
   AiOutlinePhone,
   AiOutlineClose,
   AiOutlineCheck,
+  AiOutlineHeart,
+  AiFillHeart,
 } from 'react-icons/ai';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
@@ -14,6 +16,7 @@ import { currentStoreState } from '@/atom';
 export default function StoreBox() {
   const router = useRouter();
   const [currentStore, setCurrentStore] = useRecoilState(currentStoreState);
+
   return (
     <div
       className={cn(
@@ -45,11 +48,16 @@ export default function StoreBox() {
                 <AiOutlineClose />
               </button>
             </div>
-
-            <div className="mt-4 flex gap-2 items-center">
-              <BiMap />
-              {currentStore?.address || '주소가 없습니다.'}
+            <div className="flex justify-between gap-4">
+              <div className="mt-4 flex gap-2 items-center col-span-3">
+                <BiMap />
+                {currentStore?.address || '주소가 없습니다.'}
+              </div>
+              <button type="button" className="mt-4">
+                <AiOutlineHeart className="hover:text-red-600 focus:text-red-600" />
+              </button>
             </div>
+
             <div className="mt-2 flex gap-2 items-center">
               <AiOutlinePhone />
               {currentStore?.phone || '연락처가 없습니다.'}

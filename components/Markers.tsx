@@ -1,19 +1,25 @@
-import { currentStoreState, locationState, mapState } from '@/atom';
+import {
+  currentStoreState,
+  locationState,
+  mapIndexState,
+  mapState,
+} from '@/atom';
 import { StoreInterface } from '@/interface';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface MarkerProps {
-  stores: StoreInterface[];
+  stores: StoreInterface[] | undefined;
 }
 
 export default function Markers({ stores }: MarkerProps) {
   const map = useRecoilValue(mapState);
   const setCurrentStore = useSetRecoilState(currentStoreState);
   const [location, setLocation] = useRecoilState(locationState);
+  const [mapIndex, setMapIndex] = useRecoilState(mapIndexState);
 
   useEffect(() => {
-    if (map) {
+    if (map && stores) {
       // 식당 데이터
       stores?.map((store: StoreInterface) => {
         let imageSrc = store?.category
@@ -55,6 +61,8 @@ export default function Markers({ stores }: MarkerProps) {
           yAnchor: 0.91,
         });
 
+        setMapIndex((index) => index + 1);
+
         // 오버레이에 마우스오버 이벤트를 등록합니다
         window.kakao.maps.event.addListener(marker, 'mouseover', function () {
           // 마커에 마우스오버 이벤트가 발생하면 커스텀 오버레이를 마커위에 표시합니다
@@ -81,44 +89,12 @@ export default function Markers({ stores }: MarkerProps) {
             lat: store.lat,
             lng: store.lng,
           });
-
-          let newMarker = new window.kakao.maps.Marker({
-            position: markerPosition,
-            image: markerImage, // 마커이미지 설정
-          });
-
-          newMarker.setMap(map);
-
-          let newOverlay = new window.kakao.maps.CustomOverlay({
-            position: markerPosition,
-            content: content,
-            xAnchor: 0.6,
-            yAnchor: 0.91,
-          });
-
-          // 오버레이에 마우스오버 이벤트를 등록합니다
-          window.kakao.maps.event.addListener(
-            newMarker,
-            'mouseover',
-            function () {
-              // 마커에 마우스오버 이벤트가 발생하면 커스텀 오버레이를 마커위에 표시합니다
-              newOverlay.setMap(map);
-            }
-          );
-
-          // 오버레이에 마우스아웃 이벤트를 등록합니다
-          window.kakao.maps.event.addListener(
-            newMarker,
-            'mouseout',
-            function () {
-              // 마커에 마우스아웃 이벤트가 발생하면 커스텀 오버레이를 제거합니다
-              newOverlay.setMap(null);
-            }
-          );
+          marker.setZIndex(mapIndex + 1);
+          setMapIndex((index) => index + 1);
         });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [map]);
+  }, [map, stores]);
   return <></>;
 }

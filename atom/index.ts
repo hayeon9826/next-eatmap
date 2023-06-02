@@ -30,3 +30,8 @@ export const searchState = atom<SearchType | null>({
   key: 'search',
   default: null,
 });
+
+export const mapIndexState = atom<number>({
+  key: 'mapIndex',
+  default: 0,
+});
