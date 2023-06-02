@@ -3,6 +3,8 @@ import * as data from '../data/store.json';
 
 const prisma = new PrismaClient();
 
+const RATING_ARR = [1, 2, 3, 4, 5];
+
 async function createStores() {
   data?.['DATA']?.map(async (store) => {
     const storeData = {
@@ -14,6 +16,8 @@ async function createStores() {
       category: store?.bizcnd_code_nm,
       storeType: store?.cob_code_nm,
       foodCertifyName: store?.crtfc_gbn_nm,
+      district: store?.cgg_code_nm,
+      rating: RATING_ARR[Math.floor(Math.random() * RATING_ARR.length)],
     };
     const result = await prisma.store.create({ data: storeData });
     console.log(result);
