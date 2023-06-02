@@ -1,39 +1,9 @@
-import { Dispatch, SetStateAction } from 'react';
+import { searchState } from '@/atom';
+import { DISTRICT_ARR, districtType } from '@/interface';
+import { useRecoilState } from 'recoil';
 
-const DISTRICT_ARR = [
-  '강남구',
-  '강동구',
-  '강북구',
-  '강서구',
-  '관악구',
-  '광진구',
-  '구로구',
-  '금천구',
-  '노원구',
-  '도봉구',
-  '동대문구',
-  '동작구',
-  '마포구',
-  '서대문구',
-  '서초구',
-  '성동구',
-  '성북구',
-  '송파구',
-  '양천구',
-  '영등포구',
-  '용산구',
-  '은평구',
-  '종로구',
-  '중구',
-  '중랑구',
-];
-
-interface SearchFilterProps {
-  setQ: Dispatch<SetStateAction<string | null>>;
-  setDistrict: Dispatch<SetStateAction<string | null>>;
-}
-
-export default function SearchFilter({ setQ, setDistrict }: SearchFilterProps) {
+export default function SearchFilter() {
+  const [search, setSearch] = useRecoilState(searchState);
   return (
     <div className="mb-4 md:flex gap-2">
       <div className="relative w-full">
@@ -57,14 +27,16 @@ export default function SearchFilter({ setQ, setDistrict }: SearchFilterProps) {
         <input
           type="search"
           id="default-search"
-          onChange={(e) => setQ(e.target.value)}
+          onChange={(e) => setSearch({ ...search, q: e.target.value })}
           className="block w-full p-3 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
           placeholder="음식점 검색"
         />
       </div>
       <select
         id="countries"
-        onChange={(e) => setDistrict(e.target.value)}
+        onChange={(e) =>
+          setSearch({ ...search, district: e.target.value as districtType })
+        }
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm md:max-w-[200px] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3 mt-2 md:mt-0"
       >
         <option value="">지역 선택</option>

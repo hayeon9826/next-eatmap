@@ -1,4 +1,4 @@
-import { LocationType, StoreType } from '@/interface';
+import { LocationType, SearchType, StoreType } from '@/interface';
 import { atom } from 'recoil';
 
 const DEFAULT_LAT = 37.497625203;
@@ -6,13 +6,13 @@ const DEFAULT_LNG = 127.03088379;
 const DEFAULT_ZOOM = 3;
 
 export const mapState = atom<any>({
-  key: 'map',
+  key: `map`,
   default: null,
   dangerouslyAllowMutability: true,
 });
 
 export const currentStoreState = atom<StoreType | null>({
-  key: 'store',
+  key: `store`,
   default: null,
 });
 
@@ -23,4 +23,9 @@ export const locationState = atom<LocationType>({
     lng: DEFAULT_LNG,
     zoom: DEFAULT_ZOOM,
   },
+});
+
+export const searchState = atom<SearchType | null>({
+  key: 'search',
+  default: null,
 });

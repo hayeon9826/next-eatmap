@@ -10,17 +10,18 @@ import { useInfiniteQuery } from 'react-query';
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
 import Loader from '@/components/Loader';
 import SearchFilter from '@/components/SearchFilter';
+import { searchState } from '@/atom';
+import { useRecoilValue } from 'recoil';
 
 export default function ShopIndex() {
   const listRef = useRef<HTMLDivElement | null>(null);
   const listEnd = useIntersectionObserver(listRef, {});
-  const [q, setQ] = useState<string | null>(null);
-  const [district, setDistrict] = useState<string | null>(null);
+  const searchValue = useRecoilValue(searchState);
   const isEndPage = !!listEnd?.isIntersecting;
 
   const params = {
-    q: q,
-    district: district,
+    q: searchValue?.q,
+    district: searchValue?.district,
   };
 
   const {
@@ -71,7 +72,7 @@ export default function ShopIndex() {
   return (
     <Layout>
       <div className="px-4 md:max-w-5xl mx-auto py-8">
-        <SearchFilter setQ={setQ} setDistrict={setDistrict} />
+        <SearchFilter />
         <ul role="list" className="divide-y divide-gray-100">
           {stores?.pages?.map((page, i) => (
             <React.Fragment key={i}>
