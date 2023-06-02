@@ -1,12 +1,15 @@
+import { mapState } from '@/atom';
 import { StoreType } from '@/interface';
-import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 
 interface MarkerProps {
-  map: any;
   store: StoreType | undefined;
 }
 
-export default function Marker({ map, store }: MarkerProps) {
+export default function Marker({ store }: MarkerProps) {
+  const map = useRecoilValue(mapState);
+
   useEffect(() => {
     if (map && store) {
       // 식당 데이터

@@ -20,3 +20,9 @@ export interface StoreApiResponse {
   totalCount?: string;
   page?: number;
 }
+
+export interface LocationType {
+  lat: number;
+  lng: number;
+  zoom: number;
+}
