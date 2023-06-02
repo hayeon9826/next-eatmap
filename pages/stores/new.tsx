@@ -8,8 +8,10 @@ import {
   DISTRICT_ARR,
   FOOD_CERTIFY_ARR,
   STORE_TYPE_ARR,
+  StoreInterface,
 } from '@/interface';
 import axios from 'axios';
+import AddressSearch from '@/components/AddressSearch';
 
 export default function StoreNew() {
   const router = useRouter();
@@ -18,7 +20,7 @@ export default function StoreNew() {
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<StoreInterface>();
 
   // console.log(errors);
 
@@ -148,7 +150,7 @@ export default function StoreNew() {
                   </div>
                 </div>
 
-                <div className="col-span-full">
+                {/* <div className="col-span-full">
                   <label
                     htmlFor="address"
                     className="block text-sm font-medium leading-6 text-gray-900"
@@ -166,9 +168,15 @@ export default function StoreNew() {
                       </div>
                     )}
                   </div>
-                </div>
+                </div> */}
 
-                <div className="sm:col-span-2 sm:col-start-1">
+                <AddressSearch
+                  register={register}
+                  setValue={setValue}
+                  errors={errors}
+                />
+
+                {/* <div className="sm:col-span-2 sm:col-start-1">
                   <label
                     htmlFor="lat"
                     className="block text-sm font-medium leading-6 text-gray-900"
@@ -206,7 +214,7 @@ export default function StoreNew() {
                       </div>
                     )}
                   </div>
-                </div>
+                </div> */}
 
                 <div className="sm:col-span-2 sm:col-start-1">
                   <label
