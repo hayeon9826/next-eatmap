@@ -3,11 +3,11 @@ import Layout from '@/components/Layout';
 import Map from '@/components/Map';
 import Markers from '@/components/Markers';
 import StoreBox from '@/components/StoreBox';
-import { StoreType } from '@/interface';
+import { StoreInterface } from '@/interface';
 import axios from 'axios';
 
 interface HomeProps {
-  stores: StoreType[];
+  stores: StoreInterface[];
 }
 
 export default function Home({ stores }: HomeProps) {

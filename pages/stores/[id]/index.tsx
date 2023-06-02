@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { StoreType } from '@/interface';
+import { StoreInterface } from '@/interface';
 import Map from '@/components/Map';
 import Marker from '@/components/Marker';
 
@@ -19,7 +19,7 @@ export default function StorePage() {
     [config],
     async () => {
       const { data } = await axios(config);
-      return data as StoreType;
+      return data as StoreInterface;
     },
     {
       refetchOnWindowFocus: false,

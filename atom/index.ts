@@ -1,4 +1,4 @@
-import { LocationType, SearchType, StoreType } from '@/interface';
+import { LocationType, SearchType, StoreInterface } from '@/interface';
 import { atom } from 'recoil';
 
 const DEFAULT_LAT = 37.497625203;
@@ -12,7 +12,7 @@ export const mapState = atom<any>({
     process.env.NODE_ENV === 'development' ? true : false,
 });
 
-export const currentStoreState = atom<StoreType | null>({
+export const currentStoreState = atom<StoreInterface | null>({
   key: `store`,
   default: null,
 });
