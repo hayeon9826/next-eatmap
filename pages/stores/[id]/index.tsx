@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react';
-
 import Layout from '@/components/Layout';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -10,8 +8,6 @@ import Map from '@/components/Map';
 import Marker from '@/components/Marker';
 
 export default function StorePage() {
-  const [map, setMap] = useState(null);
-
   const router = useRouter();
   const { id } = router.query;
 
@@ -111,7 +107,7 @@ export default function StorePage() {
       {isSuccess && (
         <div className="overflow-hidden w-full mb-20 mx-auto">
           <Map lat={store?.lat} lng={store?.lng} zoom={1} />
-          <Marker map={map} store={store} />
+          <Marker store={store} />
         </div>
       )}
     </Layout>
