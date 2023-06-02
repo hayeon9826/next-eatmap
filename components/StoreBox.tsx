@@ -52,19 +52,19 @@ export default function StoreBox({ store, setCurrentStore }: StoreBoxProps) {
 
             <div className="mt-4 flex gap-2 items-center">
               <BiMap />
-              {store?.address}
+              {store?.address || '주소가 없습니다.'}
             </div>
             <div className="mt-2 flex gap-2 items-center">
               <AiOutlinePhone />
-              {store?.phone}
+              {store?.phone || '연락처가 없습니다.'}
             </div>
             <div className="mt-2 flex gap-2 items-center text-sm text-gray-700">
               <AiOutlineInfoCircle />
-              {store?.storeType}
+              {store?.storeType || '업종명이 없습니다.'}
             </div>
             <div className="mt-2 flex gap-2 items-center text-sm text-gray-700">
               <AiOutlineCheck />
-              {store?.category}
+              {store?.category || '카테고리가 없습니다.'}
             </div>
           </div>
           <button
