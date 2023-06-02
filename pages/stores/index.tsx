@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import Layout from '@/components/Layout';
 import Image from 'next/image';
-import { StoreApiResponse, StoreType } from '@/interface';
+import { StoreApiResponse, StoreInterface } from '@/interface';
 import axios from 'axios';
 import Link from 'next/link';
 import { useInfiniteQuery } from 'react-query';
@@ -76,7 +76,7 @@ export default function ShopIndex() {
         <ul role="list" className="divide-y divide-gray-100">
           {stores?.pages?.map((page, i) => (
             <React.Fragment key={i}>
-              {page.data.map((store: StoreType, index) => (
+              {page.data.map((store: StoreInterface, index) => (
                 <li className="flex justify-between gap-x-6 py-5" key={index}>
                   <div className="flex gap-x-4">
                     <Image

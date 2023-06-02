@@ -1,10 +1,10 @@
 import { mapState } from '@/atom';
-import { StoreType } from '@/interface';
+import { StoreInterface } from '@/interface';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 
 interface MarkerProps {
-  store: StoreType | undefined;
+  store: StoreInterface | undefined;
 }
 
 export default function Marker({ store }: MarkerProps) {

@@ -1,10 +1,10 @@
 import { currentStoreState, locationState, mapState } from '@/atom';
-import { StoreType } from '@/interface';
+import { StoreInterface } from '@/interface';
 import { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface MarkerProps {
-  stores: StoreType[];
+  stores: StoreInterface[];
 }
 
 export default function Markers({ stores }: MarkerProps) {
@@ -15,7 +15,7 @@ export default function Markers({ stores }: MarkerProps) {
   useEffect(() => {
     if (map) {
       // 식당 데이터
-      stores?.map((store: StoreType) => {
+      stores?.map((store: StoreInterface) => {
         let imageSrc = store?.category
             ? `/images/markers/${store?.category}.png`
             : '/images/markers/default.png', // 마커이미지의 주소입니다

@@ -1,13 +1,13 @@
-export interface StoreType {
+export interface StoreInterface {
   id: number;
   phone?: string;
   lat: number;
   lng: number;
   address: string;
   name: string;
-  storeType?: string;
-  foodCertifyName: string;
-  category?: string;
+  storeType?: StoreType;
+  foodCertifyName: foodCertifyNameType;
+  category?: categoryType;
   page?: string;
   totalPage?: string;
   district?: string;
@@ -15,7 +15,7 @@ export interface StoreType {
 }
 
 export interface StoreApiResponse {
-  data: StoreType[];
+  data: StoreInterface[];
   totalPage?: number;
   totalCount?: string;
   page?: number;
@@ -26,6 +26,30 @@ export interface LocationType {
   lng: number;
   zoom: number;
 }
+
+export type foodCertifyNameType =
+  | '채식가능음식점'
+  | '채식음식점'
+  | '저염실천음식점'
+  | '식생활체험공간'
+  | '농부시장'
+  | '친환경유기농식품판매점';
+
+export type StoreType = '일반음식점' | '휴게음식점' | '제과점영업';
+
+export type categoryType =
+  | '한식'
+  | '카페'
+  | '분식'
+  | '동남아'
+  | '양식'
+  | '술집'
+  | '베이커리'
+  | '인도_중동'
+  | '중국식'
+  | '탕류'
+  | '일식'
+  | '복어취급';
 
 export type districtType =
   | '강남구'
@@ -85,4 +109,30 @@ export const DISTRICT_ARR = [
   '종로구',
   '중구',
   '중랑구',
+];
+
+export const CATEGORY_ARR = [
+  '한식',
+  '카페',
+  '분식',
+  '동남아',
+  '양식',
+  '술집',
+  '베이커리',
+  '인도_중동',
+  '중국식',
+  '탕류',
+  '일식',
+  '복어취급',
+];
+
+export const STORE_TYPE_ARR = ['일반음식점', '휴게음식점', '제과점영업'];
+
+export const FOOD_CERTIFY_ARR = [
+  '채식가능음식점',
+  '채식음식점',
+  '저염실천음식점',
+  '식생활체험공간',
+  '농부시장',
+  '친환경유기농식품판매점',
 ];

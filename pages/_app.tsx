@@ -4,13 +4,9 @@ import { QueryClient, QueryClientProvider, Hydrate } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
-import {
-  RecoilRoot,
-  atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
-} from 'recoil';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { RecoilRoot } from 'recoil';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Hydrate state={pageProps.dehydratedState}>
           <SessionProvider session={session as Session}>
             <Component {...pageProps} />
+            <ToastContainer />
           </SessionProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </Hydrate>
