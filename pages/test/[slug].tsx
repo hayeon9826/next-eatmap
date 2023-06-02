@@ -9,21 +9,24 @@ export default function Page() {
   const [count, setCount] = useState(0);
   return (
     <div>
-      <h1>Page: {router.query.slug}</h1>
+      <h1>Page: {router?.query?.slug}</h1>
       <p>Count: {count}</p>
       <button onClick={() => setCount(count + 1)}>Increase count</button>
       <ul>
         <li>
-          <Link href="/one">one</Link>
+          <Link href="/test/one">one</Link>
         </li>
         <li>
-          <Link href="/two">two</Link>
+          <Link href="/test/two">two</Link>
         </li>
         <li>
           <button
             type="button"
             onClick={() => {
-              router.push({ pathname: '/[slug]', query: { slug: 'push' } });
+              router.push({
+                pathname: '/test/[slug]',
+                query: { slug: 'push' },
+              });
             }}
           >
             push
@@ -34,7 +37,7 @@ export default function Page() {
             type="button"
             onClick={() => {
               router.replace({
-                pathname: '/[slug]',
+                pathname: '/test/[slug]',
                 query: { slug: 'replace' },
               });
             }}

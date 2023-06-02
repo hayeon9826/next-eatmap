@@ -8,7 +8,8 @@ const DEFAULT_ZOOM = 3;
 export const mapState = atom<any>({
   key: `map`,
   default: null,
-  dangerouslyAllowMutability: true,
+  dangerouslyAllowMutability:
+    process.env.NODE_ENV === 'development' ? true : false,
 });
 
 export const currentStoreState = atom<StoreType | null>({
