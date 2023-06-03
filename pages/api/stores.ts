@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { StoreApiResponse } from '@/interface';
 import prisma from '@/lib/prisma';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import axios from 'axios';
 
 export default async function handler(
@@ -8,6 +10,7 @@ export default async function handler(
   res: NextApiResponse<StoreApiResponse>
 ) {
   const { id, page, limit = '10', q, district }: any = req.query;
+  const session = await getServerSession(req, res, authOptions);
 
   if (req.method === 'POST') {
     const formData = req.body;
@@ -52,7 +55,6 @@ export default async function handler(
     return res.status(200).json(result);
   } else {
     let stores;
-
     const count = await prisma.store.count({});
 
     if (page) {
@@ -80,6 +82,11 @@ export default async function handler(
           id: id ? parseInt(id) : {},
           district: district ? district : {},
           ...(q ? { name: { contains: q } } : {}),
+        },
+        include: {
+          likes: {
+            where: session ? { userId: parseInt(session?.user?.id) } : {},
+          },
         },
       });
     }

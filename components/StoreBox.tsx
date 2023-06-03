@@ -10,10 +10,12 @@ import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { currentStoreState } from '@/atom';
+import Like from './Like';
 
 export default function StoreBox() {
   const router = useRouter();
   const [currentStore, setCurrentStore] = useRecoilState(currentStoreState);
+
   return (
     <div
       className={cn(
@@ -45,11 +47,14 @@ export default function StoreBox() {
                 <AiOutlineClose />
               </button>
             </div>
-
-            <div className="mt-4 flex gap-2 items-center">
-              <BiMap />
-              {currentStore?.address || '주소가 없습니다.'}
+            <div className="flex justify-between gap-4">
+              <div className="mt-4 flex gap-2 items-center col-span-3">
+                <BiMap />
+                {currentStore?.address || '주소가 없습니다.'}
+              </div>
+              <Like storeId={currentStore.id} className="mt-4" />
             </div>
+
             <div className="mt-2 flex gap-2 items-center">
               <AiOutlinePhone />
               {currentStore?.phone || '연락처가 없습니다.'}

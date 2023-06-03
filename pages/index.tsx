@@ -5,12 +5,22 @@ import Markers from '@/components/Markers';
 import StoreBox from '@/components/StoreBox';
 import { StoreInterface } from '@/interface';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 
-interface HomeProps {
-  stores: StoreInterface[];
-}
+export default function Home() {
+  const { data: stores } = useQuery<StoreInterface[]>(
+    ['stores'],
+    async () => {
+      const result = await axios('/api/stores');
+      return result.data;
+    },
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    }
+  );
 
-export default function Home({ stores }: HomeProps) {
   return (
     <Layout>
       <Map />
@@ -18,15 +28,4 @@ export default function Home({ stores }: HomeProps) {
       <StoreBox />
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const stores = await axios.get(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/stores`
-  );
-
-  return {
-    props: { stores: stores.data },
-    revalidate: 60 * 60,
-  };
 }

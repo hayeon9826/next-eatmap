@@ -16,9 +16,10 @@ model User {
   name  String?
   emailVerified DateTime?
   image         String?
-  userType  UserType? @default(value: NORMAL)
+  userType      UserType? @default(value: NORMAL)
   accounts      Account[]
   sessions      Session[]
+  likes         Like[]
 }
 
 model Store {
@@ -33,7 +34,19 @@ model Store {
   foodCertifyName  String // crtfc_gbn_nm
   district  String?  // cgg_code_nm
   rating    Int?
+  likes         Like[]
 }
+
+model Like {
+  id        String   @id @default(uuid())
+  storeId   Int
+  userId    Int
+  createdAt DateTime @default(now())
+  store     Store     @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, storeId])
+}
+
 
 model Account {
   id                 String  @id @default(cuid())

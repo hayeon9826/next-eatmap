@@ -28,6 +28,22 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.NAVER_CLIENT_SECRET || '',
     }),
   ],
+  // https://next-auth.js.org/configuration/callbacks
+  callbacks: {
+    session: ({ session, token }) => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: token.sub,
+      },
+    }),
+    jwt: async ({ user, token }) => {
+      if (user) {
+        token.sub = user.id;
+      }
+      return token;
+    },
+  },
   pages: {
     signIn: '/users/login',
   },

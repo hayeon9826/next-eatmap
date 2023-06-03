@@ -7,12 +7,12 @@ interface PaginationProps {
 
 export default function Pagination({ totalPage, page }: PaginationProps) {
   return (
-    <div className="py-6 w-full px-10 flex justify-center gap-y-4 bg-white shadow border my-10 flex-wrap">
+    <div className="py-6 w-full px-10 flex justify-center gap-y-4 bg-white border-t mb-10 flex-wrap">
       {totalPage < 10 ? (
         [...Array(totalPage)].map((x, i) => (
           <Link
             href={{
-              pathname: `/stores`,
+              pathname: `/users/mypage`,
               query: { page: i },
             }}
             key={i}
@@ -33,7 +33,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
           {parseInt(page) > 0 && (
             <Link
               href={{
-                pathname: `/stores`,
+                pathname: `/users/mypage`,
                 query: { page: parseInt(page) - 1 },
               }}
             >
@@ -47,7 +47,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
 
           <Link
             href={{
-              pathname: `/stores`,
+              pathname: `/users/mypage`,
               query: { page: parseInt(page) },
             }}
           >
@@ -60,7 +60,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
           {parseInt(page) < totalPage - 1 && (
             <Link
               href={{
-                pathname: `/stores`,
+                pathname: `/users/mypage`,
                 query: { page: parseInt(page) + 1 },
               }}
             >

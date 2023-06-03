@@ -9,6 +9,8 @@ import Marker from '@/components/Marker';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
+import { AiOutlineHeart } from 'react-icons/ai';
+import Like from '@/components/Like';
 
 export default function StorePage() {
   const router = useRouter();
@@ -19,7 +21,7 @@ export default function StorePage() {
     url: `/api/stores?id=${id}`,
   };
 
-  const { data: store, isSuccess } = useQuery(
+  const { data: store, isSuccess } = useQuery<StoreInterface>(
     [config],
     async () => {
       const { data } = await axios(config);
@@ -74,7 +76,8 @@ export default function StorePage() {
             </div>
           </div>
           {status === 'authenticated' && (
-            <div className="px-4 sm:px-0 text-sm leading-6 text-gray-500 flex gap-2 items-center float-right mt-2 md:mt-0">
+            <div className="px-4 sm:px-0 text-sm leading-6 text-gray-500 flex gap-4 items-center float-right mt-2 md:mt-0">
+              {store && <Like storeId={store.id} />}
               <Link className="underline" href={`/stores/${store?.id}/edit`}>
                 수정
               </Link>
