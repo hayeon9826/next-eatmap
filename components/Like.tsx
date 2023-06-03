@@ -48,6 +48,8 @@ export default function Like({ storeId, className }: LikeProps) {
       } catch (e) {
         console.log(e);
       }
+    } else {
+      toast.error('로그인 후 사용해주세요.');
     }
   };
   return (

@@ -85,7 +85,9 @@ export default async function handler(
         },
         include: {
           likes: {
-            where: session ? { userId: parseInt(session?.user?.id) } : {},
+            where: session?.user
+              ? { userId: parseInt(session?.user?.id) }
+              : { userId: 0 },
           },
         },
       });

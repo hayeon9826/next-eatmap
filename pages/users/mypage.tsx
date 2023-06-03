@@ -2,8 +2,8 @@
 import Layout from '@/components/Layout';
 import Pagination from '@/components/Pagination';
 import SkeletonList from '@/components/SkeletonList';
-import StoreList from '@/components/StoreList';
-import { LikeApiResponse, LikeInterface } from '@/interface';
+import CommentList from '@/components/comments/CommentList';
+import { CommentApiResponse } from '@/interface';
 import axios from 'axios';
 import { signOut, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -14,10 +14,22 @@ export default function MyPage() {
   const router = useRouter();
   const { page = '0' }: any = router.query;
 
-  const { data: likes, isFetching } = useQuery([`likes-${page}`], async () => {
-    const { data } = await axios(`/api/likes?page=${page}&limit=5`);
-    return data as LikeApiResponse;
-  });
+  const {
+    data: comments,
+    isFetching,
+    refetch,
+  } = useQuery(
+    [`comments-${page}`],
+    async () => {
+      const { data } = await axios(
+        `/api/comments?page=${page}&limit=5&user=true`
+      );
+      return data as CommentApiResponse;
+    },
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
 
   return (
     <Layout>
@@ -58,6 +70,7 @@ export default function MyPage() {
                   alt="프로필 이미지"
                   width={48}
                   height={48}
+                  className="rounded-full"
                 />
               </dd>
             </div>
@@ -79,31 +92,36 @@ export default function MyPage() {
           </dl>
         </div>
       </div>
-      <div className="px-4 md:max-w-5xl mx-auto py-8 pb-20">
+      <div className="px-4 md:max-w-5xl mx-auto py-10 pb-20">
         <div className="px-4 sm:px-0">
           <h3 className="text-lg font-semibold leading-7 text-gray-900">
-            찜한 가게
+            내가 쓴 댓글
           </h3>
           <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">
-            찜한 가게 리스트
+            댓글 리스트
           </p>
-          <ul role="list" className="divide-y divide-gray-100">
+          <ul
+            role="list"
+            className="divide-y divide-gray-100 max-w-5xl mx-auto"
+          >
             {isFetching ? (
               <SkeletonList />
             ) : (
-              likes?.data?.map((like: LikeInterface, index) => (
-                <StoreList
-                  index={index}
-                  store={like.store}
-                  key={like.store.id}
-                />
-              ))
+              <CommentList
+                comments={comments}
+                refetch={refetch}
+                hasStoreLink={true}
+              />
             )}
           </ul>
         </div>
-        {likes?.totalPage && likes?.totalPage > 0 && (
-          <Pagination totalPage={likes?.totalPage} page={page} />
-        )}
+        {comments?.totalPage && comments?.totalPage > 0 ? (
+          <Pagination
+            totalPage={comments?.totalPage}
+            page={page}
+            pathName="/users/mypage"
+          />
+        ) : null}
       </div>
     </Layout>
   );

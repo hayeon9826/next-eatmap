@@ -5,7 +5,7 @@
 /* navbar  */
 /* https://transform.tools/css-to-tailwind */
 .navbar {
-  @apply h-[52px] w-full fixed bg-white px-6 py-0 border-b-gray-200 border-b border-solid top-0;
+  @apply h-[52px] w-full fixed bg-white px-6 py-0 border-b-gray-200 border-b border-solid top-0 z-[100];
 }
 
 .navbar__header {
@@ -31,7 +31,7 @@
 
 @media only screen and (max-width: 600px) {
   .navbar {
-    @apply px-3 py-0 z-[100];
+    @apply px-3 py-0 z-[100] bg-white block;
   }
 
   .navbar__button {

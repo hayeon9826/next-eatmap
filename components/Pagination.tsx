@@ -3,16 +3,21 @@ import Link from 'next/link';
 interface PaginationProps {
   totalPage: number;
   page: string;
+  pathName: string;
 }
 
-export default function Pagination({ totalPage, page }: PaginationProps) {
+export default function Pagination({
+  totalPage,
+  page,
+  pathName,
+}: PaginationProps) {
   return (
-    <div className="py-6 w-full px-10 flex justify-center gap-y-4 bg-white border-t mb-10 flex-wrap">
+    <div className="py-6 w-full px-10 flex justify-center gap-y-4 bg-white  mb-10 flex-wrap">
       {totalPage < 10 ? (
         [...Array(totalPage)].map((x, i) => (
           <Link
             href={{
-              pathname: `/users/mypage`,
+              pathname: pathName,
               query: { page: i },
             }}
             key={i}
@@ -33,7 +38,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
           {parseInt(page) > 0 && (
             <Link
               href={{
-                pathname: `/users/mypage`,
+                pathname: pathName,
                 query: { page: parseInt(page) - 1 },
               }}
             >
@@ -47,7 +52,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
 
           <Link
             href={{
-              pathname: `/users/mypage`,
+              pathname: pathName,
               query: { page: parseInt(page) },
             }}
           >
@@ -60,7 +65,7 @@ export default function Pagination({ totalPage, page }: PaginationProps) {
           {parseInt(page) < totalPage - 1 && (
             <Link
               href={{
-                pathname: `/users/mypage`,
+                pathname: pathName,
                 query: { page: parseInt(page) + 1 },
               }}
             >
