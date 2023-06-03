@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
 import { AiOutlineHeart } from 'react-icons/ai';
 import Like from '@/components/Like';
+import Comments from '@/components/comments';
 
 export default function StorePage() {
   const router = useRouter();
@@ -78,12 +79,21 @@ export default function StorePage() {
           {status === 'authenticated' && (
             <div className="px-4 sm:px-0 text-sm leading-6 text-gray-500 flex gap-4 items-center float-right mt-2 md:mt-0">
               {store && <Like storeId={store.id} />}
-              <Link className="underline" href={`/stores/${store?.id}/edit`}>
+              <Link
+                className="cursor-pointer hover:text-gray-800 focus:text-gray-800"
+                href="#comments"
+              >
+                댓글
+              </Link>
+              <Link
+                className="underline hover:text-gray-800 focus:text-gray-800"
+                href={`/stores/${store?.id}/edit`}
+              >
                 수정
               </Link>
               <button
                 type="button"
-                className="underline"
+                className="underline hover:text-gray-800 focus:text-gray-800"
                 onClick={handleDelete}
               >
                 삭제
@@ -154,10 +164,15 @@ export default function StorePage() {
         </div>
       </div>
       {isSuccess && (
-        <div className="overflow-hidden w-full mb-20 mx-auto">
-          <Map lat={store?.lat} lng={store?.lng} zoom={1} />
-          <Marker store={store} />
-        </div>
+        <>
+          <div className="overflow-hidden w-full mb-8 mx-auto max-w-5xl">
+            <Map lat={store?.lat} lng={store?.lng} zoom={1} />
+            <Marker store={store} />
+          </div>
+          <div id="comments" className="max-w-2xl mb-20 mx-auto">
+            <Comments storeId={store.id} />
+          </div>
+        </>
       )}
     </Layout>
   );

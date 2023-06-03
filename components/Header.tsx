@@ -22,6 +22,7 @@ export default function Header() {
       <div className="navbar__links">
         <Link href="/stores">맛집 목록</Link>
         <Link href="/stores/new">맛집 등록</Link>
+        <Link href="/users/likes">찜한 가게</Link>
         {status === 'authenticated' ? (
           <>
             <Link href="/users/mypage">마이페이지</Link>

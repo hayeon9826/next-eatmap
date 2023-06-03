@@ -37,6 +37,30 @@ export interface LikeApiResponse {
   page?: number;
 }
 
+interface UserInterface {
+  id: string;
+  name?: string;
+  email: string;
+  image?: string;
+}
+
+export interface CommentInterface {
+  id: string;
+  storeId: number;
+  userId: number;
+  store: StoreInterface;
+  user: UserInterface;
+  createdAt: string;
+  body: string;
+}
+
+export interface CommentApiResponse {
+  data?: CommentInterface[];
+  totalPage?: number;
+  totalCount?: string;
+  page?: number;
+}
+
 export interface LocationType {
   lat: number;
   lng: number;

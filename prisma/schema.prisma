@@ -20,6 +20,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   likes         Like[]
+  comments  Comment[]
 }
 
 model Store {
@@ -34,8 +35,21 @@ model Store {
   foodCertifyName  String // crtfc_gbn_nm
   district  String?  // cgg_code_nm
   rating    Int?
-  likes         Like[]
+  likes     Like[]
+  comments  Comment[]
 }
+
+model Comment {
+  id         String    @id @default(uuid())
+  userId     Int
+  body       String?
+  storeId    Int
+  createdAt  DateTime  @default(now())
+  store      Store      @relation(fields: [storeId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
+  @@index([storeId, userId])
+}
+
 
 model Like {
   id        String   @id @default(uuid())
