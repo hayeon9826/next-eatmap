@@ -11,7 +11,7 @@ import {
   StoreInterface,
 } from '@/interface';
 import axios from 'axios';
-import AddressSearch from '@/components/AddressSearch';
+import AddressSearch from '@/components/store/AddressSearch';
 
 interface StoreFormProps {
   store?: StoreInterface;

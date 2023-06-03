@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '@/components/Layout';
-import Pagination from '@/components/Pagination';
-import SkeletonList from '@/components/SkeletonList';
-import StoreList from '@/components/StoreList';
+import Layout from '@/components/common/Layout';
+import Pagination from '@/components/common/Pagination';
+import SkeletonList from '@/components/common/SkeletonList';
+import StoreList from '@/components/store/StoreList';
 import { LikeApiResponse, LikeInterface } from '@/interface';
 import axios from 'axios';
 import { useRouter } from 'next/router';

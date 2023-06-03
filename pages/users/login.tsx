@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import Layout from '@/components/Layout';
+import Layout from '@/components/common/Layout';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { RiKakaoTalkFill } from 'react-icons/ri';

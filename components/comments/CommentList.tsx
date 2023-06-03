@@ -55,7 +55,7 @@ export default function CommentList({
               <div className="flex-1 py-10 border-b border-gray-200">
                 <div className="flex justify-between items-center">
                   <h3 className="font-medium text-gray-900">
-                    {review.user?.name}
+                    {review.user?.name || review.user?.email}
                   </h3>
                   {review.user.email === session?.user.email && (
                     <button
