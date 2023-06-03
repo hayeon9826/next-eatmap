@@ -5,13 +5,12 @@ import {
   AiOutlinePhone,
   AiOutlineClose,
   AiOutlineCheck,
-  AiOutlineHeart,
-  AiFillHeart,
 } from 'react-icons/ai';
 import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { currentStoreState } from '@/atom';
+import Like from './Like';
 
 export default function StoreBox() {
   const router = useRouter();
@@ -53,9 +52,7 @@ export default function StoreBox() {
                 <BiMap />
                 {currentStore?.address || '주소가 없습니다.'}
               </div>
-              <button type="button" className="mt-4">
-                <AiOutlineHeart className="hover:text-red-600 focus:text-red-600" />
-              </button>
+              <Like storeId={currentStore.id} className="mt-4" />
             </div>
 
             <div className="mt-2 flex gap-2 items-center">

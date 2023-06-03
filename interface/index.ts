@@ -12,10 +12,26 @@ export interface StoreInterface {
   totalPage?: string;
   district?: string;
   rating?: number;
+  likes?: LikeInterface[];
 }
 
 export interface StoreApiResponse {
   data: StoreInterface[];
+  totalPage?: number;
+  totalCount?: string;
+  page?: number;
+}
+
+export interface LikeInterface {
+  id: string;
+  storeId: number;
+  userId: number;
+  store: StoreInterface;
+  createdAt: string;
+}
+
+export interface LikeApiResponse {
+  data?: LikeInterface[];
   totalPage?: number;
   totalCount?: string;
   page?: number;

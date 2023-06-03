@@ -10,7 +10,7 @@ export default function StoreEdit() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { data } = useQuery<StoreInterface>([`shop-${id}`, id], async () => {
+  const { data } = useQuery<StoreInterface>([`store-${id}`, id], async () => {
     const result = await axios('/api/stores', {
       params: {
         id,

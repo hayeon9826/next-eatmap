@@ -21,7 +21,6 @@ export default function Home() {
     }
   );
 
-  console.log(stores);
   return (
     <Layout>
       <Map />

@@ -89,7 +89,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                   <input
                     type="text"
                     {...register('name', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                   {errors?.name?.type === 'required' && (
                     <div className="pt-2 text-xs text-red-600">
@@ -109,7 +109,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                 <div className="mt-2">
                   <select
                     {...register('category', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   >
                     <option value="">카테고리 선택</option>
                     {CATEGORY_ARR?.map((category) => (
@@ -136,7 +136,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                 <div className="mt-2">
                   <input
                     {...register('phone', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   />
                   {errors?.phone?.type === 'required' && (
                     <div className="pt-2 text-xs text-red-600">
@@ -156,7 +156,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                 <div className="mt-2">
                   <select
                     {...register('district', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:max-w-xs sm:text-sm sm:leading-6"
                   >
                     <option value="">자치구 선택</option>
                     {DISTRICT_ARR?.map((district) => (
@@ -187,7 +187,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                 <div className="mt-2">
                   <select
                     {...register('foodCertifyName', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   >
                     <option value="">식품인증구분 선택</option>
                     {FOOD_CERTIFY_ARR?.map((data) => (
@@ -214,7 +214,7 @@ export default function StoreForm({ store }: StoreFormProps) {
                 <div className="mt-2">
                   <select
                     {...register('storeType', { required: true })}
-                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
+                    className="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6"
                   >
                     <option value="">업종구분 선택</option>
                     {STORE_TYPE_ARR?.map((data) => (
@@ -237,13 +237,13 @@ export default function StoreForm({ store }: StoreFormProps) {
           <button
             type="button"
             onClick={() => router.back()}
-            className="rounded-md bg-gray-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
+            className="rounded-md bg-gray-400 px-3 py-2 text-sm font-semibold text-white hover:bg-gray-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-500"
           >
             뒤로가기
           </button>
           <button
             type="submit"
-            className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            className="rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
           >
             제출하기
           </button>
