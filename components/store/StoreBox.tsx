@@ -10,7 +10,7 @@ import cn from 'classnames';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import { currentStoreState } from '@/atom';
-import Like from './Like';
+import Like from '../likes/Like';
 
 export default function StoreBox() {
   const router = useRouter();

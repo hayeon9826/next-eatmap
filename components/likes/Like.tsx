@@ -1,11 +1,9 @@
-import { currentStoreState } from '@/atom';
 import { StoreInterface } from '@/interface';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
-import { useRecoilState } from 'recoil';
 
 interface LikeProps {
   storeId: number;

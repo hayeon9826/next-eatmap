@@ -1,16 +1,15 @@
-import Layout from '@/components/Layout';
+import Layout from '@/components/common/Layout';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { StoreInterface } from '@/interface';
-import Map from '@/components/Map';
-import Marker from '@/components/Marker';
+import Map from '@/components/map/Map';
+import Marker from '@/components/map/Marker';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
-import { AiOutlineHeart } from 'react-icons/ai';
-import Like from '@/components/Like';
+import Like from '@/components/likes/Like';
 import Comments from '@/components/comments';
 
 export default function StorePage() {

@@ -1,8 +1,9 @@
 /*global kakao*/
-import Layout from '@/components/Layout';
-import Map from '@/components/Map';
-import Markers from '@/components/Markers';
-import StoreBox from '@/components/StoreBox';
+import Layout from '@/components/common/Layout';
+import CurrentLocationButton from '@/components/map/CurrentLocationButton';
+import Map from '@/components/map/Map';
+import Markers from '@/components/map/Markers';
+import StoreBox from '@/components/store/StoreBox';
 import { StoreInterface } from '@/interface';
 import axios from 'axios';
 import { useQuery } from 'react-query';
@@ -15,7 +16,6 @@ export default function Home() {
       return result.data;
     },
     {
-      refetchOnMount: false,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
     }
@@ -26,6 +26,7 @@ export default function Home() {
       <Map />
       <Markers stores={stores} />
       <StoreBox />
+      <CurrentLocationButton />
     </Layout>
   );
 }

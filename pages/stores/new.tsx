@@ -1,5 +1,5 @@
-import Layout from '@/components/Layout';
-import StoreForm from '@/components/StoreForm';
+import Layout from '@/components/common/Layout';
+import StoreForm from '@/components/store/StoreForm';
 
 export default function StoreNew() {
   return (

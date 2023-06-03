@@ -1,5 +1,5 @@
-import Layout from '@/components/Layout';
-import StoreForm from '@/components/StoreForm';
+import Layout from '@/components/common/Layout';
+import StoreForm from '@/components/store/StoreForm';
 import { StoreInterface } from '@/interface';
 import axios from 'axios';
 import { useRouter } from 'next/router';

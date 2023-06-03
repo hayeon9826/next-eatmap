@@ -18,7 +18,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <Hydrate state={pageProps.dehydratedState}>
           <SessionProvider session={session as Session}>
             <Component {...pageProps} />
-            <ToastContainer />
+            <ToastContainer
+              pauseOnFocusLoss={false}
+              pauseOnHover={false}
+              autoClose={1000}
+            />
           </SessionProvider>
           <ReactQueryDevtools initialIsOpen={false} />
         </Hydrate>

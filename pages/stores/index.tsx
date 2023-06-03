@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
-import Layout from '@/components/Layout';
+import Layout from '@/components/common/Layout';
 import { StoreApiResponse, StoreInterface } from '@/interface';
 import axios from 'axios';
 import { useInfiniteQuery } from 'react-query';
 
 import useIntersectionObserver from '@/hooks/useIntersectionObserver';
-import Loader from '@/components/Loader';
-import SearchFilter from '@/components/SearchFilter';
+import Loader from '@/components/common/Loader';
+import SearchFilter from '@/components/store/SearchFilter';
 import { searchState } from '@/atom';
 import { useRecoilValue } from 'recoil';
-import StoreList from '@/components/StoreList';
+import StoreList from '@/components/store/StoreList';
 
 export default function ShopIndex() {
   const listRef = useRef<HTMLDivElement | null>(null);

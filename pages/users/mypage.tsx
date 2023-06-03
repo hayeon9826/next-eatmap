@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import Layout from '@/components/Layout';
-import Pagination from '@/components/Pagination';
-import SkeletonList from '@/components/SkeletonList';
+import Layout from '@/components/common/Layout';
+import Pagination from '@/components/common/Pagination';
+import SkeletonList from '@/components/common/SkeletonList';
 import CommentList from '@/components/comments/CommentList';
 import { CommentApiResponse } from '@/interface';
 import axios from 'axios';
