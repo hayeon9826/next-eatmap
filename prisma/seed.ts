@@ -1,5 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
-import * as data from '../data/store.json';
+import * as data from '@/data/store.json';
 
 const prisma = new PrismaClient();
 

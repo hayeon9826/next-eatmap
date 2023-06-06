@@ -47,7 +47,7 @@ export default function MyPage() {
         {likes?.totalPage && likes?.totalPage > 0 ? (
           <Pagination
             totalPage={likes?.totalPage}
-            page={page}
+            page={page || '0'}
             pathName="/users/likes"
           />
         ) : null}
