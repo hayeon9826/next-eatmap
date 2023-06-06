@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 interface PaginationProps {
   totalPage: number;
-  page?: string | null;
+  page?: string;
   pathName: string;
 }
 

@@ -120,7 +120,7 @@ export default function MyPage() {
         {comments?.totalPage && comments?.totalPage > 0 ? (
           <Pagination
             totalPage={comments?.totalPage}
-            page={page}
+            page={page || '0'}
             pathName="/users/mypage"
           />
         ) : null}
