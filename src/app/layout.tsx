@@ -6,6 +6,10 @@ import GoogleAnalytics from './googleAnalytics';
 export const metadata: Metadata = {
   title: 'Eatmap',
   description: 'Next.js 13을 이용한 지도앱',
+  openGraph: {
+    title: 'Eatmap',
+    description: 'Next.js 13을 이용한 지도앱',
+  },
 };
 
 export default function RootLayout({
