@@ -82,7 +82,7 @@ export default function StorePage({ params }: { params: { id: string } }) {
               {store && <Like storeId={store.id} />}
               <Link
                 className="cursor-pointer hover:text-gray-800 focus:text-gray-800"
-                href="#comments"
+                href={`/stores/${store?.id}#comments`}
               >
                 댓글
               </Link>
@@ -170,7 +170,7 @@ export default function StorePage({ params }: { params: { id: string } }) {
             <Map lat={store?.lat} lng={store?.lng} zoom={1} />
             <Marker store={store} />
           </div>
-          <div id="comments" className="max-w-2xl mb-20 mx-auto">
+          <div id="comments" className="max-w-2xl mb-20 mx-auto px-4">
             <Comments storeId={store.id} />
           </div>
         </>

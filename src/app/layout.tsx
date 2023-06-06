@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { NextAuthProvider } from './providers';
 import '@/styles/globals.css';
+import GoogleAnalytics from './googleAnalytics';
 
 export const metadata: Metadata = {
   title: 'Eatmap',
@@ -14,6 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <GoogleAnalytics GA_TRACKING_ID={process.env.NEXT_PUBLIC_GA_ID} />
       <body>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
